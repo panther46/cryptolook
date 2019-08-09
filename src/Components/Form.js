@@ -1,8 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import CriptomonedaList from './CriptomonedaList';
 
 
 function Form() {
+
+    const [criptomonedas, setCriptomonedas] = useState([]);
+
     // useEffect para llamar a la api
     useEffect (() =>{
         const consultarApi = async () =>{
@@ -10,9 +14,12 @@ function Form() {
             const resultado = await axios.get(url);
 
             console.log(resultado.data.Data);
+             // guardando resultado en estate.
+            setCriptomonedas(resultado.data.Data);
         }
-        // metodo, llamando. 
+       
         consultarApi();
+        
     }, []);
 
 
@@ -31,7 +38,14 @@ function Form() {
             <div className="form-group">
             <label htmlFor="example">Choose your CryptoCurrency</label>
              <select>
-                 
+             
+                 {criptomonedas.map(criptomonedas => (
+                     <CriptomonedaList
+                     key = {criptomonedas.CoinInfo.Id}
+                     criptomonedas = {criptomonedas}
+                     />
+                 ))};
+
              </select>
              <small id="currencyHelp" className="form-text text-muted">Escoge la Cripto moneda</small>
             </div>
