@@ -4,8 +4,14 @@ import CriptomonedaList from './CriptomonedaList';
 
 
 function Form() {
-
+    // estado local relacionado con la llamada a la api
     const [criptomonedas, setCriptomonedas] = useState([]);
+    // estado local relacionado con la moneda a cotizar
+    const [monedaCotizar, setMonedaCotizar] = useState('');
+    // estado local relacionado con la cripto moneda a consultar
+    const [criptoCotizar, setCriptoCotizar] = useState('');
+    // estado local relacionado a validacion de errores
+    const [error, setError] = useState(false);
 
     // useEffect para llamar a la api
     useEffect (() =>{
@@ -27,7 +33,10 @@ function Form() {
        <form>
            <div className="form-group">
             <label htmlFor="example">Choose your Currency</label>
-            <select className="form-control" id="exampleFormControlSelect1">
+            <select 
+                    className="form-control" id="exampleFormControlSelect1"
+                    onChange = {e => setMonedaCotizar(e.target.value)}
+                >
                 <option value = "">Choose your Currency</option>
                 <option value = "USD">US Dollar</option>
                 <option value = "ES">Euro</option>
@@ -37,7 +46,10 @@ function Form() {
             </div>
             <div className="form-group">
             <label htmlFor="example">Choose your CryptoCurrency</label>
-             <select>
+             <select 
+                className="form-control" id="exampleFormControlSelect1"
+                onChange = {e => setCriptoCotizar(e.target.value)}
+             >
              
                  {criptomonedas.map(criptomonedas => (
                      <CriptomonedaList
