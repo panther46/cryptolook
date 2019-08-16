@@ -8,10 +8,12 @@ import Spinner from './Components/Spinner';
 function App() {
 
   // Estados Principales de APP
-
   const [mainCurrency, setMainCurrency] = useState('');
   const [mainCriptoCurrency, setMainCriptoCurrency] = useState('');
+  // Estado de Spinner
   const [loading, setLoading] = useState(false);
+  //Estado de Resultado
+  const [resultado, setResultado] = useState({});
 
   // Component didmount
   useEffect(()=>{
@@ -23,12 +25,13 @@ function App() {
 
       // uso de axios para apirequest
       const resultado = await axios.get(url);
-      console.log(resultado);
+      // mostrando Spinner
       setLoading(true);
-      
-      //Time out para finalizar carga de spinner
+
+      //Time out para finalizar carga de spinner y agregar resultado que viene por objeto de variable resultado. En este caso el objeto de la API es dinamico, se accede a el con la sintaxis a continuacion en orden.
       setTimeout(() =>{
         setLoading(false);
+        setResultado(resultado.data.DISPLAY[mainCriptoCurrency][mainCurrency]);
       },2000);
     }
 
