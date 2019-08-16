@@ -4,6 +4,7 @@ import './App.css';
 import image from './assets/currencies-main.png';
 import Form from './Components/Form';
 import Spinner from './Components/Spinner';
+import Cotizacion from './Components/Cotizacion';
 
 function App() {
 
@@ -39,8 +40,8 @@ function App() {
 
   }, [mainCurrency, mainCriptoCurrency]);
 
-  // Logica para renderizar el spinner, si el estado loading es true ocurre el render.
- const loadingComponent = (loading) ? <Spinner/>:null;
+  // Logica para renderizar el spinner, si el estado loading es true ocurre el render. Cuando finaliza el spinner la logica adiciona es agregada
+ const loadingComponent = (loading) ? <Spinner/>: <Cotizacion resultado={resultado}/>;
 
 
   return(
