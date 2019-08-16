@@ -28,16 +28,30 @@ function Form() {
         
     }, []);
 
+    const cotizarMoneda = e => {
+        e.preventDefault();
+
+        // Validacion de error, si ambos campos estan llenos
+        if (monedaCotizar === '' || criptoCotizar === ''){
+            setError(true);
+            return;
+        }
+
+        // Pasar datos a componente principal
+        setError(false);
+    }
+
+
 
     return(
-       <form>
+       <form onSubmit = {cotizarMoneda}>
            <div className="form-group">
             <label htmlFor="example">Choose your Currency</label>
             <select 
                     className="form-control" id="exampleFormControlSelect1"
                     onChange = {e => setMonedaCotizar(e.target.value)}
                 >
-                <option value = "">Choose your Currency</option>
+                <option value = "">Currency</option>
                 <option value = "USD">US Dollar</option>
                 <option value = "ES">Euro</option>
                 <option value = "GBP">Pounds</option>
@@ -45,11 +59,12 @@ function Form() {
              <small id="emailHelp" className="form-text text-muted">Escoge la moneda que quieres consultar</small>
             </div>
             <div className="form-group">
-            <label htmlFor="example">Choose your CryptoCurrency</label>
+            <label htmlFor="">CryptoCurrency</label>
              <select 
-                className="form-control" id="exampleFormControlSelect1"
+                className="form-control" id=""
                 onChange = {e => setCriptoCotizar(e.target.value)}
              >
+             <option value = "">CryptoCurrency</option>
              
                  {criptomonedas.map(criptomonedas => (
                      <CriptomonedaList
@@ -61,7 +76,8 @@ function Form() {
              </select>
              <small id="currencyHelp" className="form-text text-muted">Escoge la Cripto moneda</small>
             </div>
-            <button type="button" className="btn btn-primary btn-lg btn-block">CALCULATE</button>
+            <input type = "submit" className = "btn btn-primary btn-lg btn-block" value="Calcular"></input>
+            
        </form>
 
     )
