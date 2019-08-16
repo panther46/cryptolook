@@ -2,6 +2,9 @@ h1{
   color:white;
  
 }
+h2{
+  color: white;
+}
 
 .wrapper{
   padding-top: 200px;
@@ -16,3 +19,6 @@ label{
   text-align: center;
 }
 
+p{
+  color: white;
+}

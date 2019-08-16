@@ -8,7 +8,13 @@ const Cotizacion = ({resultado}) => {
 
     return(
         <div className = "resultado">
-            <h2>Resultado</h2>
+            <h2>Result</h2>
+            <p className = "precio">The Price is <span>{resultado.PRICE}</span></p>
+
+            <p>Highest price of the day:<span>{resultado.HIGHDAY}</span></p>
+            <p>Lowest price of the day:<span>{resultado.HIGHDAY}</span></p>
+            <p>Variation last 24 hours:<span>{resultado.CHANGEPCT24HOUR}</span></p>
+            <p>Last update:<span>{resultado.LASTUPDATE} </span></p>
         </div>
 
     )

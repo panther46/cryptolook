@@ -65,7 +65,7 @@ function Form({setMainCurrency, setMainCriptoCurrency}) {
                 <option value = "ES">Euro</option>
                 <option value = "GBP">Pounds</option>
             </select>
-             <small id="emailHelp" className="form-text text-muted">Escoge la moneda que quieres consultar</small>
+             <small id="emailHelp" className="form-text text-muted">Choose the currency you want to consult</small>
             </div>
             <div className="form-group">
             <label htmlFor="">CryptoCurrency</label>
@@ -83,7 +83,7 @@ function Form({setMainCurrency, setMainCriptoCurrency}) {
                  ))};
 
              </select>
-             <small id="currencyHelp" className="form-text text-muted">Escoge la Cripto moneda</small>
+             <small id="currencyHelp" className="form-text text-muted">Choose the crypto currency</small>
             </div>
             <input type = "submit" className = "btn btn-primary btn-lg btn-block" value="Calcular"></input>
             
