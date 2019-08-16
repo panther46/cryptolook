@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import CriptomonedaList from './CriptomonedaList';
+import Alert from './Alert';
 
 
-function Form() {
+function Form({setMainCurrency, setMainCriptoCurrency}) {
     // estado local relacionado con la llamada a la api
     const [criptomonedas, setCriptomonedas] = useState([]);
     // estado local relacionado con la moneda a cotizar
@@ -13,7 +14,7 @@ function Form() {
     // estado local relacionado a validacion de errores
     const [error, setError] = useState(false);
 
-    // useEffect para llamar a la api
+    // useEffect para llamar a la api, esta llamada es unicamente para mapear el dropdown.... IMPORTANTE
     useEffect (() =>{
         const consultarApi = async () =>{
             const url = 'https://min-api.cryptocompare.com/data/top/totaltoptiervolfull?limit=10&tsym=USD';
@@ -31,20 +32,28 @@ function Form() {
     const cotizarMoneda = e => {
         e.preventDefault();
 
-        // Validacion de error, si ambos campos estan llenos
+        // Validacion de error, si ambos campos estan llenos, de lo contrario el estado error sera false.
         if (monedaCotizar === '' || criptoCotizar === ''){
             setError(true);
             return;
+            
         }
-
-        // Pasar datos a componente principal
         setError(false);
+        
+
+        // Pasar datos a componente principal, entran a este componente directamente por distructuring
+        setMainCurrency(monedaCotizar);
+        setMainCriptoCurrency(criptoCotizar);
+        
     }
 
 
+    // Render de componente de error, se le pasa el mensaje, remember final null.
+    const errorComponent = (error)? <Alert mensaje= "All inputs are mandatory"/>:null;
 
     return(
        <form onSubmit = {cotizarMoneda}>
+       {errorComponent}
            <div className="form-group">
             <label htmlFor="example">Choose your Currency</label>
             <select 
